@@ -1,0 +1,8 @@
+@import url('./asset.css');
+.avatar {
+    border-radius: 100%;
+}
+
+.primary-color {
+    color: var(--primary-color)
+}
