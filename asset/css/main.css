@@ -6,3 +6,118 @@
 .primary-color {
     color: var(--primary-color)
 }
+
+.primary-bg {
+    background: var(--primary-color)
+}
+
+
+/* start navbar section */
+
+#search-btn {
+    height: 40px;
+    border-radius: none;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0 10px;
+    right: 0px;
+    top: 0;
+}
+
+nav {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+#search-form {
+    width: 300px;
+}
+
+#dropdown {
+    left: -200px;
+    width: 250px;
+}
+
+#new-dropdown {
+    left: -100px
+}
+
+#navbarSupportedContent {
+    width: 40%;
+}
+
+.signin-btn {
+    width: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* end navbar section */
+
+
+/* start carousel section */
+
+.carousel-item {
+    padding-top: 32%;
+    background: url('../img/banner.png') top center / cover no-repeat;
+}
+
+
+/* end carousel section */
+
+
+/*start sign up pop up section*/
+
+.su-overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+
+/*end sign up pop up section*/
+
+
+/*start footer section */
+
+footer {
+    height: 300px;
+}
+
+
+/*end footer section*/
+
+
+/*start responsive section */
+
+@media screen and (max-width: 992px) {
+    #search-btn {
+        width: 40px;
+        border-radius: 100%;
+        padding: 0 10px;
+        right: 0px;
+        top: 0;
+    }
+    #search-form {
+        width: 40px;
+    }
+    #dropdown,
+    #new-dropdown {
+        width: 100%;
+        left: 0;
+        border: none;
+        background-color: var(--bs-light-rgb);
+    }
+}
+
+
+/*end responsive section */

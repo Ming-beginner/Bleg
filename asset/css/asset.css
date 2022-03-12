@@ -9,23 +9,30 @@
     box-sizing: border-box;
     text-decoration: none;
     transition: all 0.3s ease;
-}
-
-button {
-    border: none;
-    padding: 15px 10px;
-    border-radius: 20px;
-    display: inline-block;
     font-family: 'Roboto', sans-serif;
 }
 
-button:hover {
+button,
+[role="button"] {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+button:hover,
+[role="button"]:hover {
     opacity: 0.8;
+    color: #fff;
+}
+
+.manage-account:hover {
+    color: #000;
 }
 
 .button {
     border-radius: 4px;
-    background-color: #f4511e;
+    background-color: #FF8C3A;
     border: none;
     color: #ffffff;
     text-align: center;
@@ -60,4 +67,20 @@ button:hover {
 .button:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+.dropdown {
+    transition: all 0.3s;
+}
+
+.no-decor {
+    text-decoration: none;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.616);
+}
+
+.overlay-active {
+    display: flex;
 }
