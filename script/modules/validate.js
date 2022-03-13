@@ -13,7 +13,11 @@ export default function validate(config) {
             .match(
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             );
-        handleValidate(isEmail, 'Invalid email', 'Valid email');
+        handleValidate(
+            isEmail,
+            config.error || 'Invalid email',
+            config.success || 'Valid email'
+        );
         return isEmail;
     }
 
@@ -21,8 +25,9 @@ export default function validate(config) {
         let isCorrectPassword = config.node.value.length >= config.min;
         handleValidate(
             isCorrectPassword,
+            config.error ||
             `Password must have at least ${config.min} characters`,
-            'Valid password'
+            config.success || 'Valid password'
         );
         return isCorrectPassword;
     }
@@ -31,10 +36,21 @@ export default function validate(config) {
         let isCorrectRepeatPassword = config.node.value === config.password;
         handleValidate(
             isCorrectRepeatPassword,
-            'Password and confirm password do not match',
-            ''
+            config.error || 'Password and confirm password do not match',
+            config.success || ''
         );
         return isCorrectRepeatPassword;
+    }
+
+    function validateRequire() {
+        let isCorrectInput =
+            Boolean(config.node.value) && config.node.value.length > 0;
+        handleValidate(
+            isCorrectInput,
+            config.error || 'You must fill in this form',
+            config.success || ''
+        );
+        return isCorrectInput;
     }
 
     function handleValidate(boolValue, errorText, successText) {
@@ -48,16 +64,18 @@ export default function validate(config) {
             config.textNode.style.color = 'green';
         }
     }
-    if (config.type === 'email') {
-        validateEmail();
-        return validateEmail();
-    }
-    if (config.type === 'password') {
-        validatePassword();
-        return validatePassword();
-    }
-    if (config.type === 'repeat-password') {
-        validateRepeatPassword();
-        return validateRepeatPassword();
+    switch (config.type) {
+        case 'password':
+            validatePassword();
+            return validatePassword();
+        case 'email':
+            validateEmail();
+            return validateEmail();
+        case 'repeat-password':
+            validateRepeatPassword();
+            return validateRepeatPassword();
+        case 'require':
+            validateRequire();
+            return validateRequire();
     }
 }

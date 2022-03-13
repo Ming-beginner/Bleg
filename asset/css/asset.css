@@ -76,11 +76,3 @@ button:hover,
 .no-decor {
     text-decoration: none;
 }
-
-.overlay {
-    background-color: rgba(0, 0, 0, 0.616);
-}
-
-.overlay-active {
-    display: flex;
-}

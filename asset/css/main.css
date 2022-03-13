@@ -4,11 +4,11 @@
 }
 
 .primary-color {
-    color: var(--primary-color)
+    color: var(--primary-color);
 }
 
 .primary-bg {
-    background: var(--primary-color)
+    background: var(--primary-color);
 }
 
 
@@ -27,7 +27,7 @@
 }
 
 nav {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #search-form {
@@ -40,7 +40,7 @@ nav {
 }
 
 #new-dropdown {
-    left: -100px
+    left: -100px;
 }
 
 #navbarSupportedContent {
@@ -51,6 +51,7 @@ nav {
     width: 80px;
     display: flex;
     justify-content: center;
+    color: #fff;
 }
 
 
@@ -68,7 +69,11 @@ nav {
 /* end carousel section */
 
 
-/*start sign up pop up section*/
+/*start sign upsection*/
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.616);
+}
 
 .su-overlay {
     position: fixed;
@@ -83,8 +88,31 @@ nav {
     display: none;
 }
 
+.overlay-active {
+    display: flex;
+}
 
-/*end sign up pop up section*/
+
+/*end sign up section*/
+
+
+/*start add_info section*/
+
+.form-container {
+    width: 200%;
+}
+
+.form-container-avatar {
+    transform: translateX(-50%);
+}
+
+#avatar-preview {
+    width: 90px;
+    height: 90px;
+}
+
+
+/*end add_info section*/
 
 
 /*start footer section */

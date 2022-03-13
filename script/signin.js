@@ -1,14 +1,13 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import {
     getAuth,
     GoogleAuthProvider,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    signInWithPopup
-} from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
-import { firebaseConfig } from './modules/config.js'
-import validate from './modules/validate.js'
-
+    signInWithPopup,
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+import { firebaseConfig } from './modules/config.js';
+import validate from './modules/validate.js';
 
 const emailInput = document.getElementById('email-input');
 const passwordInput = document.getElementById('password-input');
@@ -16,43 +15,45 @@ const textNode = document.querySelectorAll('.text-node');
 const submitBtn = document.getElementById('submit-btn');
 const ggBtn = document.getElementById('gg-btn');
 
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 let isCorrectEmail = false;
 let isCorrectPassword = false;
 
-
 emailInput.addEventListener('focusout', () => {
-    isCorrectEmail = Boolean(validate({
-        type: 'email',
-        node: emailInput,
-        textNode: textNode[0]
-    }))
+    isCorrectEmail = Boolean(
+        validate({
+            type: 'email',
+            node: emailInput,
+            textNode: textNode[0],
+        })
+    );
 });
 passwordInput.addEventListener('focusout', () => {
     isCorrectPassword = validate({
         type: 'password',
         node: passwordInput,
         min: 8,
-        textNode: textNode[1]
-    })
+        textNode: textNode[1],
+    });
 });
+
 submitBtn.addEventListener('click', () => {
-    let email = emailInput.value;
-    let password = passwordInput.value;
-    if (isCorrectEmail == isCorrectPassword == true) {
-        signInUser(email, password)
-    };
-})
+    checkUserInfo();
+    if (isCorrectEmail && isCorrectPassword) {
+        let email = emailInput.value;
+        let password = passwordInput.value;
+        signInUser(email, password);
+    }
+});
 ggBtn.addEventListener('click', createNewUserWithGoogle);
 
 function signInUser(email, password) {
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user)
+            console.log(user);
         })
         .then(() => {
             window.location.href = '../index.html';
@@ -60,7 +61,7 @@ function signInUser(email, password) {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            // ..
+            alert(errorMessage);
         });
 }
 
@@ -73,7 +74,7 @@ function createNewUserWithGoogle() {
             // The signed-in user info.
             const user = result.user;
             auth.currentUser = user;
-            console.log(user)
+            console.log(user);
         })
         .then(() => {
             window.location.href = '../index.html';
@@ -86,7 +87,21 @@ function createNewUserWithGoogle() {
             const email = error.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
-        })
+        });
+}
 
+function checkUserInfo() {
+    isCorrectEmail = Boolean(
+        validate({
+            type: 'email',
+            node: emailInput,
+            textNode: textNode[0],
+        })
+    );
+    isCorrectPassword = validate({
+        type: 'password',
+        node: passwordInput,
+        min: 8,
+        textNode: textNode[1],
+    });
 }
