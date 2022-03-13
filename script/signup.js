@@ -112,7 +112,13 @@ function createNewUserWithGoogle() {
             const errorMessage = error.message;
             const email = error.email;
             const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
+            let errorMes = errorMessage
+                .split('/')[1]
+                .slice(0, -2)
+                .split('-')
+                .join(' ');
+            console.error(error);
+            showPopup('Error', errorMes, './signup.html', 'Try Again');
         });
 }
 

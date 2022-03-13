@@ -14,6 +14,10 @@ const passwordInput = document.getElementById('password-input');
 const textNode = document.querySelectorAll('.text-node');
 const submitBtn = document.getElementById('submit-btn');
 const ggBtn = document.getElementById('gg-btn');
+const overlay = document.querySelector('.su-overlay');
+const popupHeader = document.getElementById('popup-header');
+const popupContent = document.getElementById('popup-content');
+const popupLink = document.getElementById('popup-link');
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -47,7 +51,7 @@ submitBtn.addEventListener('click', () => {
         signInUser(email, password);
     }
 });
-ggBtn.addEventListener('click', createNewUserWithGoogle);
+ggBtn.addEventListener('click', signinWithGoogle);
 
 function signInUser(email, password) {
     signInWithEmailAndPassword(auth, email, password)
@@ -61,11 +65,17 @@ function signInUser(email, password) {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorMessage);
+            let errorMes = errorMessage
+                .split('/')[1]
+                .slice(0, -2)
+                .split('-')
+                .join(' ');
+            console.error(error);
+            showPopup('Error', errorMes, './signin.html', 'Try Again');
         });
 }
 
-function createNewUserWithGoogle() {
+function signinWithGoogle() {
     signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -77,7 +87,12 @@ function createNewUserWithGoogle() {
             console.log(user);
         })
         .then(() => {
-            window.location.href = '../index.html';
+            showPopup(
+                'Success',
+                "You've signed in sucessfully",
+                '../index.html',
+                'Continue'
+            );
         })
         .catch((error) => {
             // Handle Errors here.
@@ -87,6 +102,13 @@ function createNewUserWithGoogle() {
             const email = error.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
+            let errorMes = errorMessage
+                .split('/')[1]
+                .slice(0, -2)
+                .split('-')
+                .join(' ');
+            console.error(error);
+            showPopup('Error', errorMes, './signin.html', 'Try Again');
         });
 }
 
@@ -104,4 +126,12 @@ function checkUserInfo() {
         min: 8,
         textNode: textNode[1],
     });
+}
+
+function showPopup(header, content, url, linkText) {
+    popupHeader.innerText = header;
+    popupContent.innerText = content;
+    popupLink.innerText = linkText;
+    popupLink.href = url;
+    overlay.classList.add('overlay-active');
 }
