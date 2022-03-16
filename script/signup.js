@@ -14,7 +14,6 @@ const passwordInput = document.getElementById('password-input');
 const repeatPasswordInput = document.getElementById('repeat-password-input');
 const textNode = document.querySelectorAll('.text-node');
 const submitBtn = document.getElementById('submit-btn');
-const ggBtn = document.getElementById('gg-btn');
 const overlay = document.querySelector('.su-overlay');
 const popupHeader = document.getElementById('popup-header');
 const popupContent = document.getElementById('popup-content');
@@ -22,7 +21,6 @@ const popupLink = document.getElementById('popup-link');
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const provider = new GoogleAuthProvider();
 let isCorrectEmail = false;
 let isCorrectPassword = false;
 let isCorrectRepeatPassword = false;
@@ -60,9 +58,9 @@ submitBtn.addEventListener('click', () => {
         createNewUser(email, password);
     }
 });
-ggBtn.addEventListener('click', createNewUserWithGoogle);
 
 function createNewUser(email, password) {
+    checkUserInfo();
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
@@ -79,39 +77,6 @@ function createNewUser(email, password) {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            let errorMes = errorMessage
-                .split('/')[1]
-                .slice(0, -2)
-                .split('-')
-                .join(' ');
-            console.error(error);
-            showPopup('Error', errorMes, './signup.html', 'Try Again');
-        });
-}
-
-function createNewUserWithGoogle() {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-            console.log(user);
-        })
-        .then(() => {
-            showPopup(
-                'Success',
-                "You've signed up sucessfully",
-                './add_info.html',
-                'Continue'
-            );
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
             let errorMes = errorMessage
                 .split('/')[1]
                 .slice(0, -2)
