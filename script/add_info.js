@@ -10,12 +10,19 @@ import {
     uploadBytes,
     getDownloadURL,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
+import {
+    doc,
+    setDoc,
+    getFirestore,
+    Timestamp,
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { firebaseConfig } from './modules/config.js';
 import validate from './modules/validate.js';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const storage = getStorage();
+const db = getFirestore();
 
 const nameInput = document.getElementById('name-input');
 const dateInput = document.getElementById('date-input');
@@ -44,6 +51,7 @@ nameInput.addEventListener('focusout', () => {
     });
 });
 dateInput.addEventListener('change', () => {
+    console.log(dateInput.value);
     isCorrectDate = validate({
         type: 'require',
         node: dateInput,
@@ -97,14 +105,27 @@ returnBtn.addEventListener('click', () => {
 });
 
 function updateUserInfo(name, dateOfBirth, gender, photoURL) {
+    let dateArgs = dateOfBirth.split('-');
+    let _dateOfBirth = new Date(dateArgs[2], dateArgs[1] - 1, dateArgs[0]);
+    console.log(_dateOfBirth);
+    dateOfBirth = Timestamp.fromDate(new Date());
     updateProfile(auth.currentUser, {
             displayName: name,
-            dateOfBirth,
-            gender,
             photoURL,
         })
-        .then(() => {
-            window.location.href = '../index.html';
+        .then(async() => {
+            if (auth.currentUser) {
+                let uid = auth.currentUser.uid;
+
+                try {
+                    await setDoc(doc(db, 'users', uid), {
+                        dateOfBirth: Timestamp.fromDate(_dateOfBirth),
+                        gender,
+                    });
+                } catch (e) {
+                    console.error('Error adding document: ', e);
+                }
+            }
         })
         .catch((error) => {
             alert(error.message);

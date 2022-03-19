@@ -87,12 +87,24 @@ function signinWithGoogle() {
             console.log(user);
         })
         .then(() => {
-            showPopup(
-                'Success',
-                "You've signed in sucessfully",
-                '../index.html',
-                'Continue'
-            );
+            if (
+                auth.currentUser.metadata.creationTime !==
+                auth.currentUser.metadata.lastSignInTime
+            ) {
+                showPopup(
+                    'Success',
+                    "You've signed in sucessfully",
+                    '../index.html',
+                    'Continue'
+                );
+            } else {
+                showPopup(
+                    'Success',
+                    "You've signed up sucessfully",
+                    './add_info.html',
+                    'Continue'
+                );
+            }
         })
         .catch((error) => {
             // Handle Errors here.

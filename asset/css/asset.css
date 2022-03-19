@@ -76,3 +76,7 @@ button:hover,
 .no-decor {
     text-decoration: none;
 }
+
+a {
+    transition: ease 0.2s;
+}
