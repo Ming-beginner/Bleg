@@ -56,7 +56,7 @@ onAuthStateChanged(auth, (user) => {
         const signOutBtn = document.getElementById('signout-btn');
         signOutBtn.addEventListener('click', signOutUser);
     } else {
-        navbarItem.innerHTML += `<a role="button" href="./pages/signin.html" class="white-text me-2 primary-bg border-0 signin-btn">Sign In</a>`;
+        navbarItem.innerHTML += `<a role="button" href="./auth/signin.html" class="white-text me-2 primary-bg border-0 signin-btn">Sign In</a>`;
     }
 });
 

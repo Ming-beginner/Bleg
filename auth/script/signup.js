@@ -1,15 +1,16 @@
 import {
-    ggProvider,
-    app,
-    auth,
-    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    GoogleAuthProvider,
     signInWithPopup,
-    GoogleAuthProvider
-} from './modules/config.js';
-import validate from './modules/validate.js';
+    auth,
+    app,
+    ggProvider
+} from '../../script/modules/config.js';
+import validate from '../../script/modules/validate.js';
 
 const emailInput = document.getElementById('email-input');
 const passwordInput = document.getElementById('password-input');
+const repeatPasswordInput = document.getElementById('repeat-password-input');
 const textNode = document.querySelectorAll('.text-node');
 const submitBtn = document.getElementById('submit-btn');
 const ggBtn = document.getElementById('gg-btn');
@@ -20,6 +21,7 @@ const popupLink = document.getElementById('popup-link');
 
 let isCorrectEmail = false;
 let isCorrectPassword = false;
+let isCorrectRepeatPassword = false;
 
 emailInput.addEventListener('focusout', () => {
     isCorrectEmail = Boolean(
@@ -38,25 +40,39 @@ passwordInput.addEventListener('focusout', () => {
         textNode: textNode[1],
     });
 });
-
+repeatPasswordInput.addEventListener('focusout', () => {
+    let password = passwordInput.value;
+    isCorrectRepeatPassword = validate({
+        type: 'repeat-password',
+        node: repeatPasswordInput,
+        password,
+        textNode: textNode[2],
+    });
+});
 submitBtn.addEventListener('click', () => {
-    checkUserInfo();
-    if (isCorrectEmail && isCorrectPassword) {
-        let email = emailInput.value;
-        let password = passwordInput.value;
-        signInUser(email, password);
+    let email = emailInput.value;
+    let password = passwordInput.value;
+    if (isCorrectEmail && isCorrectPassword && isCorrectRepeatPassword) {
+        createNewUser(email, password);
     }
 });
+
 ggBtn.addEventListener('click', signinWithGoogle);
 
-function signInUser(email, password) {
-    signInWithEmailAndPassword(auth, email, password)
+function createNewUser(email, password) {
+    checkUserInfo();
+    createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);
         })
         .then(() => {
-            window.location.href = '../index.html';
+            showPopup(
+                'Success',
+                "You've signed up sucessfully",
+                './add_info.html',
+                'Continue'
+            );
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -67,7 +83,7 @@ function signInUser(email, password) {
                 .split('-')
                 .join(' ');
             console.error(error);
-            showPopup('Error', errorMes, './signin.html', 'Try Again');
+            showPopup('Error', errorMes, './signup.html', 'Try Again');
         });
 }
 
@@ -80,9 +96,9 @@ function signinWithGoogle() {
             // The signed-in user info.
             const user = result.user;
             auth.currentUser = user;
-            console.log(user);
         })
         .then(() => {
+            console.log(auth.currentUser);
             if (
                 auth.currentUser.metadata.creationTime !==
                 auth.currentUser.metadata.lastSignInTime
@@ -120,6 +136,14 @@ function signinWithGoogle() {
         });
 }
 
+function showPopup(header, content, url, linkText) {
+    popupHeader.innerText = header;
+    popupContent.innerText = content;
+    popupLink.innerText = linkText;
+    popupLink.href = url;
+    overlay.classList.add('overlay-active');
+}
+
 function checkUserInfo() {
     isCorrectEmail = Boolean(
         validate({
@@ -128,18 +152,17 @@ function checkUserInfo() {
             textNode: textNode[0],
         })
     );
+    let password = passwordInput.value;
+    isCorrectRepeatPassword = validate({
+        type: 'repeat-password',
+        node: repeatPasswordInput,
+        password,
+        textNode: textNode[2],
+    });
     isCorrectPassword = validate({
         type: 'password',
         node: passwordInput,
         min: 8,
         textNode: textNode[1],
     });
-}
-
-function showPopup(header, content, url, linkText) {
-    popupHeader.innerText = header;
-    popupContent.innerText = content;
-    popupLink.innerText = linkText;
-    popupLink.href = url;
-    overlay.classList.add('overlay-active');
 }

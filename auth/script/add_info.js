@@ -11,8 +11,8 @@ import {
     app,
     db,
     storage,
-} from './modules/config.js';
-import validate from './modules/validate.js';
+} from '../../script/modules/config.js';
+import validate from '../../script/modules/validate.js';
 
 
 const nameInput = document.getElementById('name-input');
@@ -113,6 +113,7 @@ function updateUserInfo(name, dateOfBirth, gender, photoURL) {
                         dateOfBirth: Timestamp.fromDate(_dateOfBirth),
                         gender,
                     });
+                    location.href = '../index.html';
                 } catch (e) {
                     console.error('Error adding document: ', e);
                 }

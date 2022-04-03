@@ -128,19 +128,6 @@ main {
 
 /*start add_info section*/
 
-.form-container {
-    width: 200%;
-}
-
-.form-container-avatar {
-    transform: translateX(-50%);
-}
-
-#avatar-preview {
-    width: 90px;
-    height: 90px;
-}
-
 
 /*end add_info section*/
 
