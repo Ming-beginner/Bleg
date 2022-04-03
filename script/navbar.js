@@ -1,13 +1,11 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import {
-    getAuth,
+    auth,
     onAuthStateChanged,
     signOut,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { firebaseConfig } from './modules/config.js';
+    app
+} from './modules/config.js';
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+
 const navbarItem = document.getElementById('navbar-items');
 
 onAuthStateChanged(auth, (user) => {
@@ -58,7 +56,7 @@ onAuthStateChanged(auth, (user) => {
         const signOutBtn = document.getElementById('signout-btn');
         signOutBtn.addEventListener('click', signOutUser);
     } else {
-        navbarItem.innerHTML += `<a role="button" href="./auth/signin.html" class="white-text me-2 primary-bg border-0 signin-btn">Sign In</a>`;
+        navbarItem.innerHTML += `<a role="button" href="./pages/signin.html" class="white-text me-2 primary-bg border-0 signin-btn">Sign In</a>`;
     }
 });
 

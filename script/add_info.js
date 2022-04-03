@@ -1,28 +1,19 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import {
-    getAuth,
-    onAuthStateChanged,
-    updateProfile,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import {
-    getStorage,
     ref,
     uploadBytes,
     getDownloadURL,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
-import {
+    onAuthStateChanged,
+    updateProfile,
     doc,
     setDoc,
-    getFirestore,
     Timestamp,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
-import { firebaseConfig } from './modules/config.js';
+    auth,
+    app,
+    db,
+    storage,
+} from './modules/config.js';
 import validate from './modules/validate.js';
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const storage = getStorage();
-const db = getFirestore();
 
 const nameInput = document.getElementById('name-input');
 const dateInput = document.getElementById('date-input');

@@ -1,0 +1,33 @@
+.overlay {
+    background-color: rgba(0, 0, 0, 0.616);
+}
+
+.su-overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.overlay-active {
+    display: flex;
+}
+
+.form-container {
+    width: 200%;
+}
+
+.form-container-avatar {
+    transform: translateX(-50%);
+}
+
+#avatar-preview {
+    width: 90px;
+    height: 90px;
+}

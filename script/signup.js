@@ -1,12 +1,11 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
 import {
-    getAuth,
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
-    onAuthStateChanged,
     signInWithPopup,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { firebaseConfig } from './modules/config.js';
+    auth,
+    app,
+    ggProvider
+} from './modules/config.js';
 import validate from './modules/validate.js';
 
 const emailInput = document.getElementById('email-input');
@@ -20,9 +19,6 @@ const popupHeader = document.getElementById('popup-header');
 const popupContent = document.getElementById('popup-content');
 const popupLink = document.getElementById('popup-link');
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const provider = new GoogleAuthProvider();
 let isCorrectEmail = false;
 let isCorrectPassword = false;
 let isCorrectRepeatPassword = false;
@@ -92,7 +88,7 @@ function createNewUser(email, password) {
 }
 
 function signinWithGoogle() {
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, ggProvider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
