@@ -113,6 +113,7 @@ function updateUserInfo(name, dateOfBirth, gender, photoURL) {
                         dateOfBirth: Timestamp.fromDate(_dateOfBirth),
                         gender,
                     });
+                    location.href = '../index.html';
                 } catch (e) {
                     console.error('Error adding document: ', e);
                 }

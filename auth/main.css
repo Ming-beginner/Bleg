@@ -1,3 +1,4 @@
+@import url(../asset/css/asset.css);
 .overlay {
     background-color: rgba(0, 0, 0, 0.616);
 }
@@ -30,4 +31,11 @@
 #avatar-preview {
     width: 90px;
     height: 90px;
+}
+.primary-color {
+    color: var(--primary-color);
+}
+
+.primary-bg {
+    background: var(--primary-color);
 }
