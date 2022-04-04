@@ -38,5 +38,17 @@ const ggProvider = new GoogleAuthProvider();
 const db = getFirestore();
 const storage = getStorage(app);
 
+const tagList = [
+    'News',
+    'Web Development',
+    'Mobile Development',
+    'Artificial Intelligent',
+    'Data Science',
+    'Block Chain',
+    'DSA',
+    'Life Style',
+    'Travel',
+    'Food',
+]
 
-export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, storage }
+export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, storage, tagList }
