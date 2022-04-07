@@ -19,7 +19,7 @@ onAuthStateChanged(auth, (user) => {
                         </a>
                         <ul class="dropdown-menu" id="dropdown" aria-labelledby="navbarDropdown">
                             <li class="d-flex align-items-center  flex-column">
-                                <img src=${user.photoURL} class="avatar" width="45px" alt="" />
+                                <img src=${user.photoURL} class="avatar" alt="" />
                                 <p>${user.displayName}</p>
                                 <a role="button" class="btn border manage-account">Manage your account</a>
                             </li>

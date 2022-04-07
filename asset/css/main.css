@@ -1,6 +1,8 @@
 @import url('./asset.css');
 .avatar {
     border-radius: 100%;
+    width: 45px;
+    height: 45px;
 }
 
 .primary-color {
@@ -25,6 +27,10 @@
     color: #fff;
 }
 
+.cspt {
+    cursor: pointer;
+}
+
 body {
     width: 100vw;
     overflow: auto;
@@ -46,7 +52,6 @@ body {
 }
 
 nav {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 100;
     width: 100%;
 }
