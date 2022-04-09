@@ -104,6 +104,15 @@ main {
     font-size: 30px;
 }
 
+.like-container-below {
+    width: 40%;
+    font-size: 20px;
+}
+
+.like-container-below>div {
+    flex-direction: row;
+}
+
 .main-blog {
     width: 50%;
     margin-left: 5%;
@@ -145,5 +154,15 @@ main {
     .blog-card {
         min-width: 220px;
         flex-wrap: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .side-bar {
+        display: none;
+    }
+    .main-blog {
+        width: 80%;
+        margin: 0;
     }
 }

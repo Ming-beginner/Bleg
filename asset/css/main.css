@@ -127,6 +127,11 @@ main {
     width: 40%;
 }
 
+.thumbnail {
+    width: 100%;
+    padding-top: 50%;
+}
+
 
 /*end blog & card section*/
 

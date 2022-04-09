@@ -40,7 +40,7 @@ onAuthStateChanged(auth, (user) => {
                                 <hr class="dropdown-divider" />
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/user/settings.html">
                                     <i class="fa-solid fa-gear me-2"></i> Settings
                                 </a>
                             </li>
