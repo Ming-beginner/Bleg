@@ -1,0 +1,107 @@
+@import url('../asset/css/main.css');
+main {
+    margin: 0;
+    padding-top: 76px;
+    height: 100vh;
+    display: flex;
+    overflow: auto;
+}
+
+.side-bar {
+    height: 100%;
+    position: fixed;
+    width: 200px;
+    border-right: 1px solid #111;
+    position: fixed;
+    top: 76px;
+    left: 0;
+    z-index: 99;
+    background-color: #fff
+}
+
+.side-bar-icon {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    display: none;
+    background-color: var(--primary-color);
+    height: 51px;
+    width: 60px;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.side-bar-icon:hover {
+    opacity: 0.8;
+}
+
+.side-bar-icon-active {
+    left: 200px;
+}
+
+.tab-navigator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #111;
+    padding: 10px 15px;
+    font-weight: 500;
+    font-size: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.tab-active {
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.tab-content-container {
+    min-height: 100%;
+    width: 80%;
+    margin-left: calc(20% + 1px);
+}
+
+.tab-content-container>div {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.thumbnail-1 {
+    background: url('../asset/img/thumbnail1.png') top center / cover no-repeat;
+}
+
+.thumbnail-2 {
+    background: url('../asset/img/thumbnail2.png') top center / cover no-repeat;
+}
+
+.overlay>div {
+    width: 50%;
+}
+
+form>div {
+    width: 100%;
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 992px) {
+    .side-bar {
+        transform: translateX(-200px);
+    }
+    .side-bar-active {
+        transform: translateX(0);
+    }
+    .side-bar-icon {
+        display: flex;
+    }
+    .tab-content-container {
+        width: 100%;
+        margin: 0;
+    }
+    .overlay>div {
+        width: 100%;
+    }
+}

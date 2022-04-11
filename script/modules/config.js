@@ -18,6 +18,7 @@ import {
 import {
     doc,
     setDoc,
+    getDoc,
     getFirestore,
     Timestamp,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
@@ -49,6 +50,7 @@ const tagList = [
     'Life Style',
     'Travel',
     'Food',
-]
+];
 
-export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, storage, tagList }
+
+export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, }

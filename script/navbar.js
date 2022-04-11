@@ -7,11 +7,10 @@ import {
 
 
 const navbarItem = document.getElementById('navbar-items');
-
+let currentUser;
 onAuthStateChanged(auth, (user) => {
     if (user) {
         const uid = user.uid;
-        console.log(user);
         navbarItem.innerHTML += `
     <li class="nav-item dropdown" >
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,28 +20,31 @@ onAuthStateChanged(auth, (user) => {
                             <li class="d-flex align-items-center  flex-column">
                                 <img src=${user.photoURL} class="avatar" alt="" />
                                 <p>${user.displayName}</p>
-                                <a role="button" class="btn border manage-account">Manage your account</a>
+                                <a role="button" href="/user/settings.html" class="btn border manage-account">Manage your account</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/user/profile.html">
+                                <i class="fas fa-address-card me-2"></i>Profile
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/user/account.html?type=yourbleqs">
                                     <i class="fa-regular fa-newspaper me-2"></i>Your Blegs
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/user/account.html?type=savedbleqs">
                                     <i class="fa-solid fa-bookmark me-2"></i> Saved Blegs
                                 </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider" />
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="/user/settings.html">
-                                    <i class="fa-solid fa-gear me-2"></i> Settings
-                                </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#" id="signout-btn">

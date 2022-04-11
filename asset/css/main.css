@@ -31,6 +31,39 @@
     cursor: pointer;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: none;
+}
+
+.overlay-active {
+    display: flex;
+}
+
+.close-popup {
+    top: 0;
+    right: 0;
+    background: #fff;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.close-popup:hover {
+    color: #fff;
+    background: var(--primary-color);
+}
+
 body {
     width: 100vw;
     overflow: auto;
