@@ -97,9 +97,9 @@ returnBtn.addEventListener('click', () => {
 
 function updateUserInfo(name, dateOfBirth, gender, photoURL) {
     let dateArgs = dateOfBirth.split('-');
-    let _dateOfBirth = new Date(dateArgs[2], dateArgs[1] - 1, dateArgs[0]);
+    console.log(dateArgs);
+    let _dateOfBirth = new Date(parseInt(dateArgs[0]), parseInt(dateArgs[1]) - 1, parseInt(dateArgs[2]));
     console.log(_dateOfBirth);
-    dateOfBirth = Timestamp.fromDate(new Date());
     updateProfile(auth.currentUser, {
             displayName: name,
             photoURL,

@@ -20,7 +20,7 @@ onAuthStateChanged(auth, (user) => {
                             <li class="d-flex align-items-center  flex-column">
                                 <img src=${user.photoURL} class="avatar" alt="" />
                                 <p>${user.displayName}</p>
-                                <a role="button" href="/user/settings.html" class="btn border manage-account">Manage your account</a>
+                                <a role="button" href="/user/account.html" class="btn border manage-account">Manage your account</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider" />
