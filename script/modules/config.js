@@ -7,7 +7,9 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    updateEmail,
+    updatePassword
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import {
     getStorage,
@@ -17,8 +19,11 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-storage.js';
 import {
     doc,
+    collection,
+    query,
     setDoc,
     getDoc,
+    getDocs,
     getFirestore,
     Timestamp,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
@@ -53,4 +58,4 @@ const tagList = [
 ];
 
 
-export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, }
+export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, updateEmail, updatePassword, collection, query, getDocs }

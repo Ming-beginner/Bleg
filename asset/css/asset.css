@@ -80,6 +80,7 @@ button:hover,
 a {
     transition: ease 0.2s;
 }
+
 .primary-color {
     color: var(--primary-color);
 }

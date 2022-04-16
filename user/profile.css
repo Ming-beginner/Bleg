@@ -1,1 +1,58 @@
 @import url('../asset/css/main.css');
+.side-bar {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    padding-top: 50px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.side-bar-user-info {
+    flex-wrap: wrap;
+}
+
+.side-bar-user-info>div {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 25px;
+}
+
+.side-bar-user-info i {
+    font-weight: 300;
+    font-size: 34px;
+}
+
+.main {
+    margin-left: 300px;
+}
+
+@media screen and (max-width: 992px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    .side-bar {
+        position: static;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .side-bar-user-info {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 50%;
+    }
+    .side-bar-user-info>div {
+        width: 20%;
+    }
+    .main {
+        width: 100%;
+        margin-left: 0;
+    }
+}

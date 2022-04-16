@@ -1,10 +1,15 @@
 @import url('../asset/css/main.css');
+body {
+    overflow-x: hidden;
+}
+
 main {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .category-container {
-    margin-top: 120px;
+    margin-top: 50px;
 }
 
 .category-container a {
@@ -147,6 +152,67 @@ main {
     margin: 0 10px;
 }
 
+.heart-active {
+    color: rgb(255, 126, 148)
+}
+
+.save-active {
+    color: var(--primary-color)
+}
+
+.comments-block {
+    width: 100%;
+    padding-left: 20px;
+}
+
+.comment {
+    width: 100%;
+    display: flex;
+    max-width: 100%;
+}
+
+.comment>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment .author-name {
+    font-size: 15px;
+}
+
+.comment .content {
+    font-size: 18px;
+}
+
+.main-comment {
+    background-color: rgb(221, 219, 219);
+    border-radius: 20px;
+    width: max-content;
+    padding: 1px 10px;
+}
+
+.comment-block {
+    transform: translateX(100%);
+    transition: ease 0.3s;
+    position: fixed;
+    width: 50%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 6000px 6000px #888888;
+    padding: 20px;
+}
+
+.comment-block-active {
+    transform: translateX(0);
+}
+
+.blog-tags>a {
+    text-decoration: none;
+    color: #111
+}
+
 @media screen and (max-width: 992px) {
     .blogs {
         overflow: scroll;
@@ -155,14 +221,20 @@ main {
         min-width: 220px;
         flex-wrap: none;
     }
-}
-
-@media screen and (max-width: 992px) {
     .side-bar {
         display: none;
     }
     .main-blog {
         width: 80%;
         margin: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .comment-block {
+        width: 100%;
+    }
+    .like-container-below {
+        width: 100%
     }
 }

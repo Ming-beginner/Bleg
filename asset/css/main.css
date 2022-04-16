@@ -37,7 +37,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 999;
     display: none;
 }
@@ -165,20 +165,14 @@ main {
     padding-top: 50%;
 }
 
+.author-info {
+    text-decoration: none;
+    color: #111;
+}
 
-/*end blog & card section*/
-
-
-/*start add_info section*/
-
-
-/*end add_info section*/
-
-
-/*start footer section */
-
-
-/*end footer section*/
+.author-info:hover {
+    color: #111;
+}
 
 
 /*start responsive section */

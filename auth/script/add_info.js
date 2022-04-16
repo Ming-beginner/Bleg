@@ -87,7 +87,7 @@ fileInput.addEventListener('change', () => {
 });
 
 submitBtn2.addEventListener('click', () => {
-    photoURL = photoURL || '../asset/img/avatar.png';
+    photoURL = photoURL || '/asset/img/avatar.png';
     updateUserInfo(name, dateOfBirth, gender, photoURL);
 });
 

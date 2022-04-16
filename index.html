@@ -17,52 +17,39 @@
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light position-fixed top-0">
         <div class="container">
             <a class="navbar-brand" href="/index.html">
-                <img width="50px" class="avatar me-2" src="./asset/img/logo.png" alt="" />
+                <img width="50px" class="avatar me-2" src="/asset/img/logo.png" alt="" />
                 <span class="fs-7">Blogs & Questions</span>
             </a>
             <form id="search-form" class="mb-2 mt-lg-2 ms-1 me-auto position-relative">
                 <input class="form-control me-2 w-100" type="search" placeholder="Search" aria-label="Search" style="height: 40px; width: 300px; border-radius: 20px" />
                 <button id="search-btn" class="primary-bg text-white position-absolute">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav justify-content-between align-items-lg-center me-auto mb-2 mb-lg-0 flex-sm-column-reverse flex-lg-row w-100" id="navbar-items">
                     <li class="nav-item me-3">
-                        <a class="nav-link" aria-current="page" href="/questions/index.html">Questions</a
-                            >
-                        </li>
-                        <li class="nav-item me-3">
-                            <a class="nav-link" href="/blogs/index.html"
-                                >Blogs</a
-                            >
-                        </li>
-                        <li class="nav-item me-3 dropdown">
-                            <a
-                                class="nav-link"
-                                href="#"
-                                id="navbarDropdown"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                New
-                            </a>
+                        <a class="nav-link" aria-current="page" href="#">Questions</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="/blogs/index.html">Blogs</a>
+                    </li>
+                    <li class="nav-item me-3 dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            New
+                        </a>
                         <ul class="dropdown-menu" id="new-dropdown" aria-labelledby="navbarDropdown">
                             <li>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fa-regular fa-newspaper me-2"></i
-                                        >Your Blegs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i
-                                            class="fa-solid fa-bookmark me-2"
-                                        ></i> Saved Blegs
+                                    <i class="fa-regular fa-newspaper me-2"></i> Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-bookmark me-2"></i> Question
                                 </a>
                             </li>
                         </ul>
@@ -101,29 +88,13 @@
 
         <div class="blog-container">
             <h2 class="text-center mt-4 mb-4 fw-light m">New Blogs</h2>
-            <div class="blogs d-flex justify-content-around">
-                <div href="./blogs.html" class="card blog-card mb-3">
-                    <a href="./blogs.html"><img class="card-img-top" src="./asset/img/banner.png" alt="image" /></a>
-                    <div class="card-body">
-                        <div class="w-100 tag-list mb-2">
-                            <a href="./blogs.html" class="tag">tag</a>
-                            <a href="./blogs.html" class="tag">tag</a>
-                        </div>
-                        <a href="./blogs" class="no-decor text-black card-title mb-5">
-                            <h4>Blog Title</h4>
-                        </a>
-                        <div class="blog-info mt-3">
-                            <div class="author-info">
-                                <img src="./asset/img/go.png " width="40 " class="avatar" alt=" " />
-                                <span class="author-name">Name</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="blogs d-flex justify-content-around" id="blog">
+
             </div>
-            <a href="./blogs.html" class="primary-color text-center">
-                <h5 class="mt-3">More Blogs >></h5>
-            </a>
+        </div>
+        <a href="./blogs.html" class="primary-color text-center">
+            <h5 class="mt-3">More Blogs >></h5>
+        </a>
         </div>
 
         <div class="question-container">
@@ -193,7 +164,7 @@
                     <div class="col-md-3 col-12 font-italic d-flex flex-column align-items-center align-items-lg-start mt-md-3 mt-4">
                         <img src="./asset/img/logo.png " width="60px " class="mb-2 img-fluid mb-1 avatar me-2" />
                         <span class="fs-5">Blogs & Questions</span>
-                        <a href="# " class="no-decor text-white-50">
+                        <a href="#" class="no-decor text-white-50">
                             <p>About Us</p>
                         </a>
                         <p class="text-white-50">Email: blegdev@dev.com</p>
@@ -202,18 +173,18 @@
                     <div class="col-md-3 col-12 my-sm-0 mt-5">
                         <ul class="list-unstyled text-white-50 d-flex flex-column align-items-center align-items-lg-start">
                             <li class="mt-md-3 mt-5 fs-4 mb-3 text-white">
-                                Blogs
+                                blogs
                             </li>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Web Development" class="no-decor text-white-50">
                                 <p>Web Development</p>
                             </a>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Artificial Intelligent" class="no-decor text-white-50">
                                 <p>Artificial Intelligent</p>
                             </a>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Data Science" class="no-decor text-white-50">
                                 <p>Data Science</p>
                             </a>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Mobile Development" class="no-decor text-white-50">
                                 <p>Mobile Development</p>
                             </a>
                         </ul>
@@ -221,18 +192,18 @@
                     <div class="col-md-3 col-12 my-sm-0 mt-5">
                         <ul class="list-unstyled text-white-50 d-flex flex-column align-items-center align-items-lg-start">
                             <li class="mt-md-3 mt-5 fs-4 mb-3 text-white">
-                                Blogs
+                                Questions
                             </li>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Web Development" class="no-decor text-white-50">
                                 <p>Web Development</p>
                             </a>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Artificial Intelligent" class="no-decor text-white-50">
                                 <p>Artificial Intelligent</p>
                             </a>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Data Science" class="no-decor text-white-50">
                                 <p>Data Science</p>
                             </a>
-                            <a href="# " class="no-decor text-white-50">
+                            <a href="/blogs/index.html?type=Mobile Development" class="no-decor text-white-50">
                                 <p>Mobile Development</p>
                             </a>
                         </ul>
