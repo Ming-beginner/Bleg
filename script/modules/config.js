@@ -26,6 +26,7 @@ import {
     getDocs,
     getFirestore,
     Timestamp,
+    updateDoc
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -57,5 +58,14 @@ const tagList = [
     'Food',
 ];
 
+export default function isSignedIn(callback) {
+    return onAuthStateChanged(auth, user => {
+        if (!user) {
+            callback();
+            return false;
+        }
+        return true;
+    })
+}
 
-export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, updateEmail, updatePassword, collection, query, getDocs }
+export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, updateEmail, updatePassword, collection, query, getDocs, updateDoc, }

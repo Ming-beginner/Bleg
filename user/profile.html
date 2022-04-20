@@ -64,107 +64,27 @@
                 <img src="" class="avatar mb-3 user-avatar" style="width:100px; height:100px" alt="">
                 <h3 class="user-name"></h3>
             </div>
-            <div class="d-flex justify-content-around align-items-center fw-2 side-bar-user-info">
+            <div class="d-flex justify-content-around align-items-center fw-2 w-50 side-bar-user-info">
                 <div>
                     <i class="far fa-file-alt"></i>
-                    <span>100</span>
-                </div>
-                <div>
-                    <i class="far fa-question-circle"></i>
-                    <span>100</span>
+                    <span id="blog-counter">100</span>
                 </div>
                 <div>
                     <i class="far fa-heart"></i>
-                    <span>100</span>
-                </div>
-                <div>
-                    <i class="far fa-comment"></i>
-                    <span>100</span>
+                    <span id="like-counter">100</span>
                 </div>
 
             </div>
         </div>
-        <div class="main">
+        <div class="main w-100">
             <div class="your-bleqs-tab-content align-items-center flex-column">
                 <div class="d-flex align-items-center flex-column mt-3">
-                    <h2 class="mt-3 mb-3">Blogs</h2>
-                    <div class="blogs d-flex justify-content-around">
-                        <div href="/blogs/read_blog.html" class="card blog-card mb-3">
-                            <a href="/blogs/read_blog.html"><img class="card-img-top" src="../asset/img/banner.png" alt="image" /></a>
-                            <div class="card-body">
-                                <div class="w-100 tag-list mb-2">
-                                    <a href="/blogs/" class="tag">tag</a>
-                                    <a href="/blogs/" class="tag">tag</a>
-                                </div>
-                                <a href="/blogs/read_blog.html" class="no-decor text-black card-title mb-5">
-                                    <h4>Blog Title</h4>
-                                </a>
-                                <div class="blog-info mt-3">
-                                    <a href="/user/profile.html" class="author-info">
-                                        <img src="../asset/img/go.png " width="40 " class="avatar" alt=" " />
-                                        <span class="author-name">Name</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div></div>
-                        </div>
+                    <h1 class="mt-3 mb-3">Blogs</h1>
+                    <div class="blogs d-flex justify-content-around " id="blog-block">
+
                     </div>
-                    <a href="/index.html" class="primary-color text-center">
-                        <h5 class="mt-3 mb-3">More Blogs >></h5>
-                    </a>
                 </div>
-                <div class="w-100 d-flex flex-column align-items-center">
-                    <h2 class="mt-3 mb-3">Questions</h2>
-                    <div class="d-flex justify-content-around w-100">
-                        <div class="card question-card">
-                            <div class="card-body">
-                                <div class="title question-info">
-                                    <h4 class="card-title w-75">
-                                        Question title
-                                    </h4>
-                                </div>
-                                <div class="question-info mt-3">
-                                    <div class="author-info">
-                                        <img src="/asset/img/go.png " width="40 " class="avatar" alt=" " />
-                                        <span class="author-name">Name</span>
-                                    </div>
-                                    <div class="other-info">
-                                        <a class="primary-color">n answers</a>
-                                        <div class="w-100 tag-list mb-2">
-                                            <a href="/questions/" class="tag">tag</a>
-                                            <a href="/questions/" class="tag">tag</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card question-card">
-                            <div class="card-body">
-                                <div class="title question-info">
-                                    <h4 class="card-title w-75">
-                                        Question title
-                                    </h4>
-                                </div>
-                                <div class="question-info mt-3">
-                                    <div class="author-info">
-                                        <img src="/asset/img/go.png " width="40 " class="avatar" alt=" " />
-                                        <span class="author-name">Name</span>
-                                    </div>
-                                    <div class="other-info">
-                                        <a class="primary-color">n answers</a>
-                                        <div class="w-100 tag-list mb-2">
-                                            <a href="./questions.html" class="tag">tag</a>
-                                            <a href="./questions.html" class="tag">tag</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="./index.html" class="primary-color text-center">
-                        <h5 class="mt-3 mb-3">More Question >></h5>
-                    </a>
-                </div>
+
             </div>
         </div>
     </main>

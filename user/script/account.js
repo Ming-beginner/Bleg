@@ -17,6 +17,8 @@ import {
 } from '../../script/modules/config.js';
 import validate from '../../script/modules/validate.js';
 
+import { blogCard } from '../../script/modules/components.js';
+
 //Varianles for handling navigating tabs
 const tabNavigatorList = document.querySelectorAll('.tab-navigator');
 const tabList = document.querySelectorAll('.tab-content-container>div');
@@ -114,6 +116,35 @@ function hideSideBar() {
     sideBarIcon.classList.remove('side-bar-icon-active');
     sideBarIcon.querySelector('i').classList.remove('fa-times');
 }
+
+//Show Blogs
+
+const savedBlogBlock = document.querySelector('#saved-blog-block');
+const ownBlogList = document.querySelector('#own-blog-list');
+const noblogText = '<p class="display-6 fw-light text-secondary mt-5">No blog!</p>';
+
+onAuthStateChanged(auth, async user => {
+    const userRef = doc(db, 'users', user.uid);
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+        const savedBlogList = userDoc.data().savedBlogList;
+        const ownBlogList = userDoc.data().ownBlogList;
+        if (savedBlogList.length > 0) {
+            savedBlogList.forEach(async(savedBlogId) => {
+                let blogRef = doc(db, 'blogs', savedBlogId);
+                let blogDoc = await getDoc(blogRef);
+                if (blogDoc.exists()) {
+                    savedBlogBlock.innerHTML += blogCard(blogDoc.data(), true);
+                }
+            })
+        } else {
+            savedBlogBlock.innerHTML = noblogText;
+        }
+    }
+})
+
+
 
 //Modify user info
 const modifyUserInfoForm = document.querySelector('.overlay');

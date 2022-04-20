@@ -112,6 +112,8 @@ function updateUserInfo(name, dateOfBirth, gender, photoURL) {
                     await setDoc(doc(db, 'users', uid), {
                         dateOfBirth: Timestamp.fromDate(_dateOfBirth),
                         gender,
+                        name,
+                        avatar: photoURL
                     });
                     location.href = '../index.html';
                 } catch (e) {

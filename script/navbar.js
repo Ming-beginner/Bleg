@@ -26,8 +26,8 @@ onAuthStateChanged(auth, (user) => {
                                 <hr class="dropdown-divider" />
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/user/profile.html">
-                                <i class="fas fa-address-card me-2"></i>Profile
+                                <a class="dropdown-item" href="/user/profile.html?id=${uid}">
+                                    <i class="fas fa-address-card me-2"></i>Profile
                                 </a>
                             </li>
                             <li>

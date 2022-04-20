@@ -10,12 +10,8 @@
     flex-direction: column;
 }
 
-.side-bar-user-info {
-    flex-wrap: wrap;
-}
-
 .side-bar-user-info>div {
-    width: 45%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;

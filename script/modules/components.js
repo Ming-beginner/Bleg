@@ -10,8 +10,8 @@ export function blogCard(blogInfo, haveSaveOption = false, haveDeleteOption = fa
                     }).join(' ')
                 }
             </div>
-            <a href="/blogs/read_blog.html?id=${blogInfo.id}" class="no-decor text-black card-title mb-5">
-                <h4>${blogInfo.blogTitle}</h4>
+            <a href="/blogs/read_blog.html?id=${blogInfo.id}" style="max-height: 30px; " class="no-decor d-block text-black card-title mb-5">
+                <h4 class="text-truncate">${blogInfo.blogTitle}</h4>
             </a>
             <div class="blog-info mt-3">
                 <a href="/user/profile.html?id=${blogInfo.authorId}" class="author-info">
@@ -27,16 +27,10 @@ export function blogCard(blogInfo, haveSaveOption = false, haveDeleteOption = fa
 export function questionCard(authorInfo) {}
 
 
-
-function activeHeartBtn(heartBtn) {
-    heartBtn.classList.toggle('fas');
-    heartBtn.classList.toggle('heart-active');
-}
 export function commentCard(commentInfo) {
-    let createdDate = commentInfo.createdAt.toDate().toLocaleDateString('jp-JP');
 
     return `
-    <div class="comment">
+    <div class="comment mb-3">
         <div>
             <img src="${commentInfo.authorAvatar}" class="avatar me-3" alt="">
         </div>
@@ -48,19 +42,6 @@ export function commentCard(commentInfo) {
                 <div class="content">
                     <p>${commentInfo.commentContent}</p>
                 </div>
-            </div>
-            <div class="feedback-comment d-flex">
-                <div class="like-answers-block d-flex">
-                    <div class="like me-3">
-                        <i class="far fa-heart cspt heart-btn" onclick="this.classList.toggle('fas'); this.classList.toggle('heart-active')"></i>
-                        <span>${commentInfo.likeCount}</span>
-                    </div>
-                    <div class="answer me-3">
-                        <i class="far fa-comments cspt"></i>
-                        <span>${commentInfo.answerCount}</span>
-                    </div>
-                </div>
-                <div class="created-at">${createdDate}</div>
             </div>
         </div>
 
@@ -81,28 +62,30 @@ export function landscapeBlogCard(blogInfo) {
     
 
     return `
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="${blogInfo.thumbnail}" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8 ">
-            <div class="card-body pt-2 d-flex justify-content-between">
-                <h4 class="card-title fs-4">${blogInfo.blogTitle}</h4>
+    <div class="card mb-3" style="width: 700px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${blogInfo.thumbnail}" class="img-fluid rounded-start h-100" alt="...">
             </div>
-            <div class="author-info ms-2 d-flex justify-content-between pe-2 ps-2">
-                <div>
-                    <img src="${blogInfo.authorAvatar}" class="avatar" alt=" " /> 
-                    <span class="author-name">${blogInfo.authorName}</span>
+            <div class="col-md-8 ">
+                <div class="card-body pt-2 d-flex justify-content-between">
+                    <h5 class="card-title fs-4">${blogInfo.blogTitle}</h5>
                 </div>
-                <div>
-                    ${
-                        blogInfo.tagList.map((tag)=>{
-                            return `<a href="${tag.tagURL}" class="tag">${tag.tagName}</a>`
-                        }).join(' ')
-                    }
+                <div class="author-info ms-2 d-flex justify-content-between pe-2 ps-2">
+                    <div class="mb-1">
+                        <img src="${blogInfo.authorAvatar}" class="avatar" style="width: 40px; height: 40px" alt=" " /> 
+                        <span class="author-name">${blogInfo.authorName}</span>
+                    </div>
+                    <div>
+                        ${
+                            blogInfo.tagList.map((tag)=>{
+                                return `<a href="${tag.tagURL}" class="tag">${tag.tagName}</a>`
+                            }).join(' ')
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 
     `

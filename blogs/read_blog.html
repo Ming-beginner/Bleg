@@ -15,17 +15,26 @@
 
 <body>
     <div class="overlay close-comment"></div>
+    <div class="popup">
+        <div class="card pop-up col-12 col-md-4 col-sm-7 col-xs-12 w-100">
+            <div class="card-header fs-1 d-flex justify-content-center" id="popup-header">Sign In</div>
+            <div class="card-body d-flex flex-column align-items-center justify-content-center p-3">
+                <h5 class="card-title mb-5 text-center" id="popup-content">Please Sign In</h5>
+                <a href="/auth/signin.html" id="popup-link" class="btn primary-bg text-white">Continue</a>
+            </div>
+        </div>
+    </div>
     <div class="h-100 bg-light d-flex flex-column align-items-center comment-block" id="comment-block">
         <div class="close-popup position-absolute cspt close-comment">
             <i class="fas fa-times"></i>
         </div>
 
-        <h4 class="mt-3 mb-5">Comments(<span class="comment-count">10</span>)</h4>
+        <h4 class="mt-3 mb-5">Comments(<span class="comment-count"></span>)</h4>
         <div class="comments-block">
             <div class="input-new-comment mb-5">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="New Comment" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <button class="btn input-group-text primary-bg text-light cspt" id="basic-addon2">Upload</button>
+                    <input type="text" class="form-control" id="comment-input" placeholder="New Comment" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <button class="btn input-group-text primary-bg text-light cspt" id="upload-comment-btn">Upload</button>
                 </div>
             </div>
             <div class="comments">
@@ -132,7 +141,7 @@
             </div>
             <div class="blog-more mb-5">
                 <h2 class="mb-5">More Blogs</h2>
-                <div class="card mb-3" style="width: 700px;">
+                <div class="more-blogs-block">
 
                 </div>
 
