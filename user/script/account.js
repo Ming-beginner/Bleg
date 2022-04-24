@@ -14,6 +14,8 @@ import {
     Timestamp,
     signInWithEmailAndPassword,
     updatePassword,
+    updateDoc,
+    deleteDoc
 } from '../../script/modules/config.js';
 import validate from '../../script/modules/validate.js';
 
@@ -57,10 +59,13 @@ const confirmNewPasswordInput = document.querySelector(
 const textNode = document.querySelectorAll('.text-node');
 const modifyPasswordBtn = document.querySelector('#modify-password-btn');
 
+
+
+//
+
 //Paginations
 const urlParams = new URLSearchParams(window.location.search);
 const slug = urlParams.get('type');
-console.log(slug);
 switch (slug) {
     case 'yourbleqs':
         changeTab(1);
@@ -75,6 +80,65 @@ switch (slug) {
 tabNavigatorList.forEach((tabNavigator, index) => {
     tabNavigator.onclick = () => {
         changeTab(index);
+
+        if (index == 2) {
+            let unsaveList = document.querySelectorAll('.unsave-btn');
+            console.log(unsaveList);
+            unsaveList.forEach((unsaveBtn) => {
+                unsaveBtn.onclick = () => {
+                    let blogId = unsaveBtn.id.split('-')[2];
+                    console.log(blogId);
+                    onAuthStateChanged(auth, async user => {
+                        if (user) {
+                            const userRef = doc(db, 'users', user.uid);
+                            const userDoc = await getDoc(userRef);
+                            if (userDoc.exists()) {
+                                let savedBlogList = userDoc.data().savedBlogList;
+                                let index = savedBlogList.indexOf(blogId);
+                                savedBlogList.splice(index, 1);
+                                console.log(savedBlogList);
+                                await updateDoc(userRef, {
+                                        savedBlogList,
+                                    })
+                                    .then(() => {
+                                        showPopup('Success', 'This blog has been removed from your list!', '/user/account.html?type=yourbleqs', 'Continue')
+                                    })
+                            }
+                        }
+                    })
+                }
+            })
+        } else if (index == 1) {
+            let deleteBlogBtnList = document.querySelectorAll('.delete-blog-btn');
+            deleteBlogBtnList.forEach(deleteBlogBtn => {
+                deleteBlogBtn.onclick = () => {
+                    let blogId = deleteBlogBtn.id.split('-')[3];
+                    console.log(blogId);
+                    onAuthStateChanged(auth, async user => {
+                        if (user) {
+                            const userRef = doc(db, 'users', user.uid);
+                            const userDoc = await getDoc(userRef);
+                            if (userDoc.exists()) {
+                                let ownBlogList = userDoc.data().ownBlogList;
+                                let blogCount = userDoc.data().blogCount;
+                                let index = ownBlogList.indexOf(blogId);
+                                blogCount--;
+                                ownBlogList.splice(index, 1);
+                                console.log(ownBlogList);
+                                await updateDoc(userRef, {
+                                    ownBlogList,
+                                    blogCount
+                                })
+                                await deleteDoc(doc(db, 'blogs', blogId))
+                                    .then(() => {
+                                        showPopup('Success', 'This blog has been deleted!', '/user/account.html?type=savedbleqs', 'Continue')
+                                    })
+                            }
+                        }
+                    })
+                }
+            })
+        }
     };
 });
 toYourBleqsTab.onclick = () => {
@@ -120,7 +184,7 @@ function hideSideBar() {
 //Show Blogs
 
 const savedBlogBlock = document.querySelector('#saved-blog-block');
-const ownBlogList = document.querySelector('#own-blog-list');
+const ownBlogBlock = document.querySelector('#own-blog-list');
 const noblogText = '<p class="display-6 fw-light text-secondary mt-5">No blog!</p>';
 
 onAuthStateChanged(auth, async user => {
@@ -128,18 +192,35 @@ onAuthStateChanged(auth, async user => {
     const userDoc = await getDoc(userRef);
 
     if (userDoc.exists()) {
-        const savedBlogList = userDoc.data().savedBlogList;
-        const ownBlogList = userDoc.data().ownBlogList;
+        const savedBlogList = userDoc.data().savedBlogList || [];
+        const ownBlogList = userDoc.data().ownBlogList || [];
         if (savedBlogList.length > 0) {
             savedBlogList.forEach(async(savedBlogId) => {
                 let blogRef = doc(db, 'blogs', savedBlogId);
                 let blogDoc = await getDoc(blogRef);
                 if (blogDoc.exists()) {
-                    savedBlogBlock.innerHTML += blogCard(blogDoc.data(), true);
+                    savedBlogBlock.innerHTML += blogCard({
+                        ...blogDoc.data(),
+                        id: savedBlogId,
+                    }, true);
                 }
             })
         } else {
             savedBlogBlock.innerHTML = noblogText;
+        }
+        if (ownBlogList.length > 0) {
+            ownBlogList.forEach(async(ownBlogId) => {
+                let blogRef = doc(db, 'blogs', ownBlogId);
+                let blogDoc = await getDoc(blogRef);
+                if (blogDoc.exists()) {
+                    ownBlogBlock.innerHTML += blogCard({
+                        ...blogDoc.data(),
+                        id: ownBlogId,
+                    }, false, true);
+                }
+            })
+        } else {
+            ownBlogBlock.innerHTML = noblogText;
         }
     }
 })

@@ -11,9 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../asset/css/main.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+
 </head>
 
 <body>
+    <div class="su-overlay overlay justify-content-center align-items-center container-fluid">
+        <div class="card pop-up col-12 col-md-4 col-sm-7 col-xs-12 h-50">
+            <div class="card-header fs-1 d-flex justify-content-center" id="popup-header">Success</div>
+            <div class="card-body d-flex flex-column align-items-center justify-content-center p-3">
+                <h5 class="card-title mb-5 text-center" id="popup-content">Exported successfully</h5>
+                <a href="/index.html" id="popup-link" class="btn primary-bg text-white">Continue</a>
+            </div>
+        </div>
+    </div>
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light position-fixed top-0">
         <div class="container">
             <a class="navbar-brand" href="/index.html">
@@ -32,28 +45,25 @@
             <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
                 <ul class="navbar-nav justify-content-between align-items-lg-center me-auto mb-2 mb-lg-0 flex-column-reverse flex-md-column-reverse flex-lg-row w-100" id="navbar-items">
                     <li class="nav-item me-3">
-                        <a class="nav-link" aria-current="page" href="#">Questions</a
+                        <a class="nav-link" aria-current="page" href="/questions/index.html">Questions</a
                             >
                         </li>
                         <li class="nav-item me-3">
-                            <a class="nav-link" href="#">Blogs</a>
+                            <a class="nav-link" href="/blogs/index.html">Blogs</a>
                     </li>
                     <li class="nav-item me-3 dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 New
                             </a>
                         <ul class="dropdown-menu" id="new-dropdown" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fa-regular fa-newspaper me-2"></i
-                                        >Your Blegs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i
-                                            class="fa-solid fa-bookmark me-2"
-                                        ></i> Saved Blegs
+                                <a class="dropdown-item" href="/text_editor/index.html?type=write-blog">
+                                    <i class="fa-regular fa-newspaper me-2"></i> Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item disabled" href="#">
+                                    <i class="fa-solid fa-bookmark me-2"></i> Question
                                 </a>
                             </li>
                         </ul>
@@ -62,28 +72,35 @@
             </div>
         </div>
     </nav>
-    <main class="p-5">
-        <form>
+    <main class="pe-5 ps-5 mb-5">
+        <form class="mb-5">
             <div class="form-group mb-3">
-                <input type="text" class="form-control fs-3" id="title-writing" placeholder="Title" />
+                <input type="text" class="form-control fs-3" id="title-input" placeholder="Title" />
             </div>
             <div class="form-group">
-                <div class="w-100 d-flex"></div>
-                <textarea contenteditable="true" class="form-control" id="body-writing" rows="20"></textarea>
+                <textarea id="summernote">
+                </textarea>
             </div>
             <div class="form-group">
-                <label for="tag-writing">Example select</label>
-                <select class="form-control" id="tag-writing" multiple>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                <label for="tag-writing">Example select (Press Shift to make multiple choices)</label>
+                <select class="form-control selectpicker" id="tag-writing" multiple>
+                    <option value="News">News</option>
+                    <option value="Web">Web Development</option>
+                    <option value="Mobile">Mobile Development</option>
+                    <option value="AI">Artificial Intelligent</option>
+                    <option value="DS">Data Science</option>
+                    <option value="BC">Block Chain</option>
+                    <option value="DSA">DSA</option>
+                    <option value="Life">Life Style</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Food">Food</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
+            <button type="button" id="export-btn" class="btn primary-bg text-white mt-5 mb-3 p-2 fs-5" style="width: 100px">Export</button>
         </form>
     </main>
-    <footer class="w-100">
+    <footer class="w-100 mt-5">
         <div class="row justify-content-around mb-0 pt-5 pb-0 bg-black text-white h-100 w-100 ms-0 me-0">
             <div class="col-12">
                 <div class="row justify-content-center">
@@ -155,8 +172,13 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
-    <script src="./script/navbar.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+    <script src="../script/navbar.js" type="module"></script>
+    <script src="./script/index.js" type="module"></script>
+    <script>
+    </script>
 </body>
 
 </html>

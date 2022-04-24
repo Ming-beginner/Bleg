@@ -40,6 +40,7 @@ window.onload = async() => {
     onAuthStateChanged(auth, async user => {
         if (user) {
             userRef = doc(db, 'users', user.uid);
+
             const userDoc = await getDoc(userRef);
             if (userDoc.exists()) {
                 liked = userDoc.data().likedBlogList.includes(blogId);
@@ -93,6 +94,7 @@ if (docSnap.exists()) {
     docSnap.data().tagList.forEach((tag) => {
         tagsBlock.innerHTML += tagCard(tag);
     })
+    document.getElementById('user-profile').href = `/user/profile.html?id=${docSnap.data().authorId}`
 
     docSnap.data().commentList.forEach((comment) => {
         commentsField.innerHTML += commentCard(comment);
@@ -105,15 +107,17 @@ if (docSnap.exists()) {
 //Handle button click
 heartBtns.forEach((heartBtn) => {
     heartBtn.onclick = async() => {
-        heartBtn.classList.toggle('fas');
-        heartBtn.classList.toggle('heart-active');
+        heartBtns.forEach((heartBtn) => {
+            heartBtn.classList.toggle('fas');
+            heartBtn.classList.toggle('heart-active');
+        })
         if (isSignedIn(showPopup)) {
             onAuthStateChanged(auth, async user => {
                 if (user) {
                     userRef = doc(db, 'users', user.uid);
                     const userDoc = await getDoc(userRef);
                     if (userDoc.exists()) {
-                        let likedBlogList = userDoc.data().likedBlogList;
+                        let likedBlogList = userDoc.data().likedBlogList || [];
                         if (heartBtn.classList.contains('heart-active')) {
                             like++;
                             likedBlogList.push(blogId);
@@ -152,14 +156,15 @@ saveBtn.onclick = () => {
                 console.log(userDoc.data());
                 const savedBlogList = userDoc.data().likedBlogList || [];
                 if (saveBtn.classList.contains('save-active')) {
+                    console.log(123);
                     savedBlogList.push(blogId);
                 } else {
                     let index = savedBlogList.indexOf(blogId);
                     savedBlogList.splice(index, 1);
                 }
-                console.log(savedBlogList);
+                console.log([...new Set(savedBlogList)]);
                 await updateDoc(userRef, {
-                    savedBlogList: savedBlogList,
+                    savedBlogList: [...new Set(savedBlogList)],
                 })
             }
         })

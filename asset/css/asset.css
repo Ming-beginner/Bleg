@@ -81,6 +81,14 @@ a {
     transition: ease 0.2s;
 }
 
+u {
+    text-decoration: underline;
+}
+
+s {
+    text-decoration: line-through;
+}
+
 .primary-color {
     color: var(--primary-color);
 }

@@ -1,7 +1,10 @@
-export function blogCard(blogInfo, haveSaveOption = false, haveDeleteOption = false, haveModifyOption = false) {
+export function blogCard(blogInfo, haveSaveOption = false, haveMoreOption = false) {
     return `
-    <div href="/blogs/read_blog.html?id=${blogInfo.id}" class="card blog-card mb-3">
-        <a href="/blogs/read_blog.html?id=${blogInfo.id}"><img class="card-img-top" src="${blogInfo.thumbnail}" alt="image" /></a>
+    <div class="card blog-card mb-3">
+        <a href="/blogs/read_blog.html?id=${blogInfo.id}" class="card-img-top">
+        
+        <div style="display: block;height: 124px; background: url(${blogInfo.thumbnail}) top center / cover no-repeat" alt="image" /></div>
+        </a> 
         <div class="card-body">
             <div class="w-100 tag-list mb-2">
                 ${
@@ -18,13 +21,24 @@ export function blogCard(blogInfo, haveSaveOption = false, haveDeleteOption = fa
                     <img src="${blogInfo.authorAvatar}" width="40 " class="avatar" alt=" " />
                     <span class="author-name">${blogInfo.authorName}</span>
                 </a>
+                ${haveSaveOption ? `<i class="fas fa-trash cspt fs-4 unsave-btn" id="blog-id-${blogInfo.id}"></i>` : ''}
+                ${haveMoreOption ? 
+                    `<i class="fas fa-ellipsis-v cspt" onclick="this.parentNode.parentNode.parentNode.querySelector('.more-option').classList.toggle('more-option-active')"></i>`: ''}
             </div>
+            ${haveMoreOption ? 
+                `<div class="more-option">
+                    <a class="no-decor text-black" href="/text_editor/index.html?type=modify&id=${blogInfo.id}">
+                        <i class="fas fa-pen"></i> Modify
+                    </a>
+                    <a class="delete-blog-btn no-decor text-black" id="delete-blog-id-${blogInfo.id}">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </div>` : ''}
         </div>
     </div>
     `
 }
 
-export function questionCard(authorInfo) {}
 
 
 export function commentCard(commentInfo) {
@@ -64,18 +78,18 @@ export function landscapeBlogCard(blogInfo) {
     return `
     <div class="card mb-3" style="width: 700px;">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${blogInfo.thumbnail}" class="img-fluid rounded-start h-100" alt="...">
-            </div>
+            <a href="/blogs/index.html?id=${blogInfo.id}" class="col-md-4">
+                <div style="background: url(${blogInfo.thumbnail}) top center / cover no-repeat" class="img-fluid rounded-start h-100" alt="..."></div>
+            </a>
             <div class="col-md-8 ">
                 <div class="card-body pt-2 d-flex justify-content-between">
                     <h5 class="card-title fs-4">${blogInfo.blogTitle}</h5>
                 </div>
                 <div class="author-info ms-2 d-flex justify-content-between pe-2 ps-2">
-                    <div class="mb-1">
+                    <a href="/user/profile.html?id=${blogInfo.authorId}" class="mb-1 no-decor text-black">
                         <img src="${blogInfo.authorAvatar}" class="avatar" style="width: 40px; height: 40px" alt=" " /> 
                         <span class="author-name">${blogInfo.authorName}</span>
-                    </div>
+                    </a>
                     <div>
                         ${
                             blogInfo.tagList.map((tag)=>{

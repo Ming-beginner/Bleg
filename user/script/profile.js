@@ -14,18 +14,15 @@ async function renderInfo() {
     const userRef = doc(db, 'users', id);
     const userDoc = await getDoc(userRef);
     if (userDoc.exists()) {
-        let blog = userDoc.data().blog || 0;
-        let like = userDoc.data().like || 0;
+        let blogCount = userDoc.data().blogCount || 0;
         let name = userDoc.data().name;
         let avatar = userDoc.data().avatar;
         let ownBlogList = userDoc.data().ownBlogList;
 
 
-
         userNameNode.innerText = name;
         userAvatarNode.src = avatar;
-        blogCounter.innerText = blog;
-        likeCounter.innerText = like;
+        blogCounter.innerText = blogCount;
         if (ownBlogList) {
             ownBlogList.forEach(async blogId => {
                 let blogRef = doc(db, 'blogs', blogId);
@@ -39,8 +36,7 @@ async function renderInfo() {
             blogBlock.innerHTML = noblogText;
         }
         await updateDoc(userRef, {
-            blog,
-            like,
+            blogCount,
         })
     }
 }

@@ -22,11 +22,14 @@ import {
     collection,
     query,
     setDoc,
+    addDoc,
     getDoc,
     getDocs,
     getFirestore,
     Timestamp,
-    updateDoc
+    updateDoc,
+    where,
+    deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -56,6 +59,7 @@ const tagList = [
     'Life Style',
     'Travel',
     'Food',
+    'Other'
 ];
 
 export default function isSignedIn(callback) {
@@ -68,4 +72,5 @@ export default function isSignedIn(callback) {
     })
 }
 
-export { app, auth, ggProvider, db, setDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, updateEmail, updatePassword, collection, query, getDocs, updateDoc, }
+
+export { app, auth, ggProvider, db, setDoc, addDoc, getFirestore, Timestamp, getStorage, ref, uploadBytes, getDownloadURL, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, updateProfile, doc, signOut, firebaseConfig, GoogleAuthProvider, createUserWithEmailAndPassword, getDoc, storage, tagList, updateEmail, updatePassword, collection, query, getDocs, updateDoc, where, deleteDoc }
